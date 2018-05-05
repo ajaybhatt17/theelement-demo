@@ -1,0 +1,34 @@
+<!doctype html>
+
+<html>
+<head>
+  <title>theelement demo</title>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+  <meta name='description' content='theelement demo - Cutting Edge WebRTC Video Conferencing'>
+  <script async src='https://firebasestorage.googleapis.com/v0/b/theelement-5b4d4.appspot.com/o/theelement.min.js?alt=media'></script>
+</head>
+
+<body onload="startConnection()">
+<div id='element-demo-app-container'>
+  <video autoPlay id="self" width="200px" height="200px" muted="true"/>
+</div>
+<div id='element-demo-app-media-query-detector'>
+  <video autoPlay id="otherp" width="200px" height="200px" muted="true"/>
+</div>
+<script type="application/javascript">
+  function startConnection() {
+    var element = new ElementClient('theelement.io', '3443');
+    element.on('USER_STREAM', function(mediaStream){
+      var selfEl = document.getElementById("self");
+      selfEl.srcObject = mediaStream;
+    });
+    element.on('PEER_STREAM', function(mediaStreams) {
+      var otherEl = document.getElementById("otherp");
+      otherEl.srcObject = mediaStreams[0];
+    });
+    element.connect('ajay');
+  }
+</script>
+</body>
+</html>
