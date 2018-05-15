@@ -18,7 +18,7 @@
 </div>
 <script type="application/javascript">
   function startConnection() {
-    var element = new ElementClient('theelement.io', '3443');
+    var element = new ElementClient('video.theelement.io', '3443');
     element.on('USER_STREAM', function(mediaStream){
       var selfEl = document.getElementById("self");
       selfEl.srcObject = mediaStream;
